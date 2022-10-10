@@ -12,44 +12,44 @@ public class SymmetricTsp implements ITsp{
         public void findMinRoute() {
         int sum = 0;
         int counter = 0;
-        int j = 0, i = 0;
+        int col = 0, row = 0;
         int min = Integer.MAX_VALUE;
         List<Integer> visitedRouteList = new ArrayList<>();
 
-        // Starting from the 0th indexed city i.e., the first city
+        // Starting from the 0th indexed city row.e., the first city
         visitedRouteList.add(0);
         int[] route = new int[distances.length];
 
         // Traverse the adjacency matrix tsp[][]
-        while (i < distances.length && j < distances[i].length) {
+        while (row < distances.length && col < distances[row].length) {
 
             // Corner of the Matrix
-            if (counter >= distances[i].length - 1) {
+            if (counter >= distances[row].length - 1) {
                 break;
             }
 
             // If this path is unvisited then and if the cost is less than update the cost
-            if (j != i && !(visitedRouteList.contains(j))) {
-                if (distances[i][j] < min) {
-                    min = distances[i][j];
-                    route[counter] = j + 1;
+            if (col != row && !(visitedRouteList.contains(col))) {
+                if (distances[row][col] < min) {
+                    min = distances[row][col];
+                    route[counter] = col + 1;
                 }
             }
-            j++;
+            col++;
 
             // Check all paths from the ith indexed city
-            if (j == distances[i].length) {
+            if (col == distances[row].length) {
                 sum += min;
                 min = Integer.MAX_VALUE;
                 visitedRouteList.add(route[counter] - 1);
-                j = 0;
-                i = route[counter] - 1;
+                col = 0;
+                row = route[counter] - 1;
                 counter++;
             }
         }
 
-        i = route[counter - 1] - 1;
-        sum += distances[i][0];
+        row = route[counter - 1] - 1;
+        sum += distances[row][0];
         route[counter]= 1;
 
         System.out.print("Minimum Cost is : ");

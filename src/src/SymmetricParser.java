@@ -4,9 +4,9 @@ import java.util.Scanner;
 
 public class SymmetricParser implements IParser {
 
-    int dimension;
-    Coordinate[] coordinates;
-    Scanner scanner;
+    private int dimension;
+    private Coordinate[] coordinates;
+    private Scanner scanner;
     @Override
     public ITsp parse(String path) {
         setScanner(path);
@@ -14,7 +14,7 @@ public class SymmetricParser implements IParser {
         return getCoordinates();
     }
 
-    public void setScanner(String path) {
+    private void setScanner(String path) {
         File file = new File(path);
 
         try {
@@ -24,7 +24,7 @@ public class SymmetricParser implements IParser {
         }
     }
 
-    public void getDimension(){
+    private void getDimension(){
         String fileType;
         String nextLine = scanner.nextLine();
 
@@ -36,33 +36,34 @@ public class SymmetricParser implements IParser {
         fileType = scanner.nextLine().split(" ")[2];
         scanner.nextLine();
     }
-    public ITsp getCoordinates(){
-        int i = 0;
+    private ITsp getCoordinates(){
+        int row = 0;
         coordinates= new Coordinate[dimension];
 
-        while (i < dimension) { // picking exactly the required number of items.
+        while (row < dimension) { // picking exactly the required number of items.
             String line = scanner.nextLine();
             String[] values = line.split(" ");
             double x = Double.parseDouble(values[1]);
             double y = Double.parseDouble(values[2]);
             Coordinate coordinate = new Coordinate(x, y);
-            coordinates[i++] = coordinate;
+            coordinates[row++] = coordinate;
         }
         return createAdjacencyMatrix();
+
     }
 
     public ITsp createAdjacencyMatrix() {
         int[][] distances = new int[dimension][dimension];
 
-        for (int i = 0; i < dimension; i++) {
-            for (int j = 0; j <= i; j++) {
-                if (i == j)
-                    distances[i][j] = 0;
+        for (int row = 0; row < dimension; row++) {
+            for (int col = 0; col <= row; col++) {
+                if (row == col)
+                    distances[row][col] = 0;
                 else {
-                    double dX = coordinates[i].getX() - coordinates[j].getX();
-                    double dY = coordinates[i].getY() - coordinates[j].getY();
-                    distances[i][j] = (int) Math.round(Math.sqrt(dX * dX + dY * dY));
-                    distances[j][i] = distances[i][j];
+                    double dX = coordinates[row].getX() - coordinates[col].getX();
+                    double dY = coordinates[row].getY() - coordinates[col].getY();
+                    distances[row][col] = (int) Math.round(Math.sqrt(dX * dX + dY * dY));
+                    distances[col][row] = distances[row][col];
                 }
             }
         }
