@@ -1,43 +1,21 @@
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class SymmetricParser implements IParser {
+public class SymmetricParser extends BaseParser {
 
-    private int dimension;
     private Coordinate[] coordinates;
-    private Scanner scanner;
+
     @Override
     public ITsp parse(String path) {
         setScanner(path);
-        getDimension();
+        getDimensionFromScanner(":");
+        getStartingPos("NODE_COORD_SECTION");
         return getCoordinates();
     }
 
-    private void setScanner(String path) {
-        File file = new File(path);
-
-        try {
-            scanner = new Scanner(file);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private void getDimension(){
-        String fileType;
-        String nextLine = scanner.nextLine();
-
-        while (!nextLine.startsWith("DIMENSION")) {
-            nextLine = scanner.nextLine();
-        }
-
-        dimension = Integer.parseInt(nextLine.split(" ")[2]);//use 4th
-        fileType = scanner.nextLine().split(" ")[2];
-        scanner.nextLine();
-    }
     private ITsp getCoordinates(){
         int row = 0;
+        int dimension = getDimension();
+        Scanner scanner = getScanner();
         coordinates= new Coordinate[dimension];
 
         while (row < dimension) { // picking exactly the required number of items.
@@ -53,6 +31,7 @@ public class SymmetricParser implements IParser {
     }
 
     public ITsp createAdjacencyMatrix() {
+        int dimension = getDimension();
         int[][] distances = new int[dimension][dimension];
 
         for (int row = 0; row < dimension; row++) {
