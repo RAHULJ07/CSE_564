@@ -2,17 +2,15 @@ import java.util.Scanner;
 
 public class AsymmetricParser extends BaseParser{
 
-    private Coordinate[] coordinates;
-
     @Override
     public ITsp parse(String path) {
         setScanner(path);
         getDimensionFromScanner(":");
         getStartingPos("EDGE_WEIGHT_SECTION");
-        return getCoordinates();
+        return getDistanceMatrix();
     }
 
-    private ITsp getCoordinates(){
+    private ITsp getDistanceMatrix(){
         int row = 0;
         int dimension = getDimension()-2;
         Scanner scanner = getScanner();
