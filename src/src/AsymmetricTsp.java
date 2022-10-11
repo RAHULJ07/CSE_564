@@ -9,8 +9,9 @@ public class AsymmetricTsp implements ITsp{
         distances = _dist;
     }
 
+
     @Override
-    public void execute() {
+    public void findMinRoute() {
 
     }
 }
