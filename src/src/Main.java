@@ -4,9 +4,13 @@ import java.awt.*;
 public class Main {
 
     public static void main(String args[]) {
-        String filename;
-        filename = "../lu980.tsp";
+       
+    	new GUI();
+    	
+    	/*String filename;
+        filename = "C:\\Users\\aoeoc\\OneDrive\\Documents\\tsp\\dj38.tsp";
         //filename = "../atsptw.all/br17a.05.tw";
+        
 
 
         ITsp iTsp= TspFactory.getTspObj(filename,TspType.Symmetric);
@@ -34,6 +38,6 @@ public class Main {
             }
         };
         SwingUtilities.invokeLater(r);
-
+*/
     }
 }
