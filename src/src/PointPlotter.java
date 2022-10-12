@@ -26,12 +26,12 @@ public class PointPlotter {
         g.fillRect(0, 0, SIZE, SIZE);
 
         Area area = new Area();
-        double r = 0.3;
+        double r = 10;
         SymmetricTsp symmetricTsp = (SymmetricTsp) iTsp;
         Coordinate[] points = symmetricTsp.getCoordinates();
         for (Coordinate point : points) {
             Ellipse2D.Double e = new Ellipse2D.Double(
-                    point.getX() - r, point.getY() - r, 2*r, 2*r);
+                    point.getX() - r, point.getY() + r, 2*r, 2*r);
             area.add(new Area(e));
         }
         Rectangle2D rect = area.getBounds2D();
