@@ -2,20 +2,21 @@ import java.util.Scanner;
 
 public class SymmetricParser extends BaseParser {
 
-    private Coordinate[] coordinates;
+
 
     @Override
     public ITsp parse(String path) {
         setScanner(path);
         getDimensionFromScanner(":");
         getStartingPos("NODE_COORD_SECTION");
-        return getCoordinates();
+        return setCoordinates();
     }
 
-    private ITsp getCoordinates(){
+    private ITsp setCoordinates(){
         int row = 0;
         int dimension = getDimension();
         Scanner scanner = getScanner();
+        Coordinate[] coordinates;
         coordinates= new Coordinate[dimension];
 
         while (row < dimension) { // picking exactly the required number of items.
@@ -26,11 +27,11 @@ public class SymmetricParser extends BaseParser {
             Coordinate coordinate = new Coordinate(x, y);
             coordinates[row++] = coordinate;
         }
-        return createAdjacencyMatrix();
+        return createAdjacencyMatrix(coordinates);
 
     }
 
-    public ITsp createAdjacencyMatrix() {
+    public ITsp createAdjacencyMatrix(Coordinate[] coordinates) {
         int dimension = getDimension();
         int[][] distances = new int[dimension][dimension];
 
@@ -46,7 +47,7 @@ public class SymmetricParser extends BaseParser {
                 }
             }
         }
-        return new SymmetricTsp(distances);
+        return new SymmetricTsp(distances, coordinates);
     }
 }
 

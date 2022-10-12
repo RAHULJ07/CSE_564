@@ -1,8 +1,19 @@
 
 public class SymmetricTsp extends BaseTsp{
 
-    public SymmetricTsp(int[][] _dist){
-        super(_dist);
+
+    private Coordinate [] coordinates;
+
+    public Coordinate[] getCoordinates() {
+        return coordinates;
     }
+
+
+    public SymmetricTsp(int[][] _dist, Coordinate[] coordinates){
+        super(_dist);
+        this.coordinates = coordinates;
+    }
+
+
 
 }
