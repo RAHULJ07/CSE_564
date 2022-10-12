@@ -52,13 +52,13 @@ public class GUI extends JFrame implements ActionListener{
 			ITsp iTsp= TspFactory.getTspObj(filename,TspType.Symmetric);
 			iTsp.findMinRoute();
 
-	        panel.removeAll();
+	        	panel.removeAll();
 			PointPlotter pointplotter = new PointPlotter(iTsp);
 			JLabel minDistance = new JLabel("Minimum Cost: ".concat(String.valueOf(iTsp.getSum())));
 			JTextArea route = new JTextArea("Path->".concat(Arrays.toString(iTsp.getRoute())), 1, 10);
 			JScrollPane scrollableTextArea = new JScrollPane(route);
-	        scrollableTextArea.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);  
-	        scrollableTextArea.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);  
+	        	scrollableTextArea.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);  
+	        	scrollableTextArea.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);  
 			panel.add(pointplotter.getUI());
 			panel.add(minDistance);
 			panel.add(scrollableTextArea);
