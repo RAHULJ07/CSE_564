@@ -25,20 +25,21 @@ public abstract class BaseTsp implements ITsp{
     @Override
     public void findMinRoute(){
         sum = 0;
-        int counter = 0;
+        int counter = 1;
         int col = 0, row = 0;
         int min = Integer.MAX_VALUE;
         List<Integer> visitedRouteList = new ArrayList<>();
 
         // Starting from the 0th indexed city row.e., the first city
         visitedRouteList.add(0);
-        route = new int[distances.length];
+        route = new int[distances.length +1];
+        route[0]=1;
 
         // Traverse the adjacency matrix tsp[][]
         while (row < distances.length && col < distances[row].length) {
 
             // Corner of the Matrix
-            if (counter >= distances[row].length - 1) {
+            if (counter >= distances[row].length) {
                 break;
             }
 
