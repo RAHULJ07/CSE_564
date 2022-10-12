@@ -4,14 +4,27 @@ import java.util.List;
 public abstract class BaseTsp implements ITsp{
 
     private int[][] distances;
+    private int sum;
+    private int[] route;
 
     public BaseTsp(int[][] _dist){
         distances = _dist;
     }
 
     @Override
+    public int getSum() {
+    	return sum;
+    }
+    
+    @Override
+    public int[] getRoute() {
+    	return route;
+    }
+    
+    
+    @Override
     public void findMinRoute(){
-        int sum = 0;
+        sum = 0;
         int counter = 0;
         int col = 0, row = 0;
         int min = Integer.MAX_VALUE;
@@ -19,7 +32,7 @@ public abstract class BaseTsp implements ITsp{
 
         // Starting from the 0th indexed city row.e., the first city
         visitedRouteList.add(0);
-        int[] route = new int[distances.length];
+        route = new int[distances.length];
 
         // Traverse the adjacency matrix tsp[][]
         while (row < distances.length && col < distances[row].length) {
