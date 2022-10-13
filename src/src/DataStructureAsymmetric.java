@@ -1,15 +1,26 @@
 import java.util.Scanner;
 
+/**
+ * Data structure class for Asymmetric type TSP that creates the adjacency matrix after parsing.
+ * @version 1.0.0.
+ */
 public class DataStructureAsymmetric implements IData{
 
     private int dimension;
     private Scanner scanner;
-
+    /**
+     * Constructor for assigning the dimension and scanner for creating the matrix.
+     * @param dimension of the city
+     * @param scanner scanner object
+     */
     public DataStructureAsymmetric(int dimension, Scanner scanner) {
         this.dimension = dimension;
         this.scanner = scanner;
     }
-
+    /**
+     * Method for creating the adjacency matrix from file data
+     * @return ITsp object to further implement the algorithm for Asymmetric TSP.
+     */
     @Override
     public ITsp createAdjacencyMatrix(){
         int row = 0;
