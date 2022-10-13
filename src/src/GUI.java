@@ -3,101 +3,135 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.Arrays;
 
-
-public class GUI extends JFrame implements ActionListener{
-	JButton button;
-	JRadioButton fileTypeTsp;
-	JRadioButton fileTypeAtsp;
-	JPanel panel;
-
-	String filename;
+/**
+ * GUI class to define the layout of the Graphical User Interface using JFrame.
+ * @version 1.0.0.
+ */
+public class GUI extends JFrame {
 	
-	GUI(){
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLayout(new FlowLayout());
-		this.setSize(1000,1000);
+	private JButton button;
+	private JRadioButton fileTypeTsp;
+	private JRadioButton fileTypeAtsp;
+	private JPanel panel;
+	private String filename;
+	
+	/**
+     * Constructor for initializing the layout of the GUI.
+     */
+	public GUI(){
 		
-		JLabel label = new JLabel("First choose file, followed by file type: ");
+		setLayout(new FlowLayout());
 
+		JLabel label = new JLabel("First choose file, followed by file type: ");
+		eventHandler handler = new eventHandler();
 		
 		button = new JButton("Select File...");
-		button.addActionListener(this);
+		button.addActionListener(handler);
 		
 		fileTypeTsp = new JRadioButton("Tsp File");
 		fileTypeAtsp = new JRadioButton("Atsp File");
-		
-		
 		ButtonGroup group = new ButtonGroup();
 		group.add(fileTypeAtsp);
 		group.add(fileTypeTsp);
-		
-		fileTypeTsp.addActionListener(this);
-		fileTypeAtsp.addActionListener(this);
+		fileTypeTsp.addActionListener(handler);
+		fileTypeAtsp.addActionListener(handler);
 		
 		panel = new JPanel();
 		
-		this.add(label);
-		this.add(button);
-		this.add(fileTypeTsp);
-		this.add(fileTypeAtsp);
-		this.add(panel, BorderLayout.CENTER);
-		this.pack();
-		this.setVisible(true);
+		add(label);
+		add(button);
+		add(fileTypeTsp);
+		add(fileTypeAtsp);
+		add(panel, BorderLayout.CENTER);
+		
 	}
 	
-	@Override
-	public void actionPerformed(ActionEvent e) {
+	/**
+     * Class for listening to and handling events using ActionListener interface.
+     */
+	private class eventHandler implements ActionListener{
 		
-		
-		if(e.getSource()==fileTypeTsp) {
-			ITsp iTsp= TspFactory.getTspObj(filename,TspType.Symmetric);
-			iTsp.findMinRoute();
-
-	        	panel.removeAll();
-			PointPlotter pointplotter = new PointPlotter(iTsp);
-			JLabel minDistance = new JLabel("Minimum Cost: ".concat(String.valueOf(((SymmetricTsp)iTsp).getSum())));
-			JTextArea route = new JTextArea("Path->".concat(Arrays.toString(((SymmetricTsp)iTsp).getRoute())), 1, 10);
-			JScrollPane scrollableTextArea = new JScrollPane(route);
-	        	scrollableTextArea.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);  
-	        	scrollableTextArea.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);  
-			panel.add(pointplotter.getUI());
-			panel.add(minDistance);
-			panel.add(scrollableTextArea);
-			panel.setSize(this.getSize());
-			panel.revalidate();
+		/**
+	     * Method for handling actions.
+	     */
+		public void actionPerformed(ActionEvent e) {
 			
-		}
-		
-		if(e.getSource()==fileTypeAtsp) {
-			ITsp iTsp= TspFactory.getTspObj(filename,TspType.Asymmetric);
-			iTsp.findMinRoute();
-			panel.removeAll();
-			JLabel minDistance = new JLabel("Minimum Cost: ".concat(String.valueOf(((AsymmetricTsp)iTsp).getSum())));
-			JTextArea route = new JTextArea("Path->".concat(Arrays.toString(((AsymmetricTsp)iTsp).getRoute())), 1, 10);
-			JScrollPane scrollableTextArea = new JScrollPane(route);
-			scrollableTextArea.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);  
-			scrollableTextArea.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);  
-			panel.add(minDistance);
-			panel.add(scrollableTextArea);
-			panel.setSize(this.getSize());
-			panel.revalidate();
-		}
-		
-		
-		if(e.getSource()==button) {
-			
-			JFileChooser fileChooser = new JFileChooser();
-			int response = fileChooser.showOpenDialog(null);
-			
-			if(response == JFileChooser.APPROVE_OPTION) {
+			if(e.getSource()==button) {
+				
+				JFileChooser fileChooser = new JFileChooser();
+				int response = fileChooser.showOpenDialog(null);
+				if(response == JFileChooser.APPROVE_OPTION) {
 					filename = fileChooser.getSelectedFile().getAbsolutePath();
-	
+					}
 				System.out.println(filename);
+				
+				}
+			if(e.getSource()==fileTypeTsp) {
+				
+				ITsp iTsp= TspFactory.getTspObj(filename,TspType.Symmetric);
+				iTsp.findMinRoute();
+				
+				PointPlotter pointplotter = new PointPlotter(iTsp);
+				updateGUI(iTsp.getSum(), iTsp.getRoute(), pointplotter);
+				
 			}
+			else if(e.getSource()==fileTypeAtsp) {
+				
+				ITsp iTsp= TspFactory.getTspObj(filename,TspType.Asymmetric);
+				iTsp.findMinRoute();
+				
+				updateGUI(iTsp.getSum(), iTsp.getRoute());
+				
+			}
+			
 		}
 		
+	}
+	
+	/**
+     * Method for displaying map, minimum path cost and route for symmetric data.
+     * @param sum Minimum path cost calculated using our algorithm.
+     * @param path Array containing the indexes of cities in order of optimal route.
+     * @param p PointPlotter class object to plot the map.
+     */
+	public void updateGUI(int sum, int[] path, PointPlotter p) {
 		
+		panel.removeAll();
+		JLabel minDistance = new JLabel("Minimum Cost: ".concat(String.valueOf(sum)));
+		
+		JTextArea route = new JTextArea("Path->".concat(Arrays.toString(path)), 1, 10);
+		JScrollPane scrollableTextArea = new JScrollPane(route);
+    		scrollableTextArea.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);  
+    		scrollableTextArea.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+    	
+    		panel.add(p.getUI());
+		panel.add(minDistance);
+		panel.add(scrollableTextArea);
+		panel.setSize(getSize());
+		panel.revalidate();
 		
 	}
-
+	
+	/**
+     * Method for displaying map, minimum path cost and route for asymmetric data.
+     * @param sum Minimum path cost calculated using our algorithm.
+     * @param path Array containing the indexes of cities in order of optimal route.
+     */
+	public void updateGUI(int sum, int[] path) {
+		
+		panel.removeAll();
+		JLabel minDistance = new JLabel("Minimum Cost: ".concat(String.valueOf(sum)));
+		
+		JTextArea route = new JTextArea("Path->".concat(Arrays.toString(path)), 1, 10);
+		JScrollPane scrollableTextArea = new JScrollPane(route);
+    	scrollableTextArea.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);  
+    	scrollableTextArea.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+    	
+		panel.add(minDistance);
+		panel.add(scrollableTextArea);
+		panel.setSize(getSize());
+		panel.revalidate();
+		
+	}
+	
 }
