@@ -55,8 +55,8 @@ public class GUI extends JFrame implements ActionListener{
 
 	        	panel.removeAll();
 			PointPlotter pointplotter = new PointPlotter(iTsp);
-			JLabel minDistance = new JLabel("Minimum Cost: ".concat(String.valueOf(iTsp.getSum())));
-			JTextArea route = new JTextArea("Path->".concat(Arrays.toString(iTsp.getRoute())), 1, 10);
+			JLabel minDistance = new JLabel("Minimum Cost: ".concat(String.valueOf(((SymmetricTsp)iTsp).getSum())));
+			JTextArea route = new JTextArea("Path->".concat(Arrays.toString(((SymmetricTsp)iTsp).getRoute())), 1, 10);
 			JScrollPane scrollableTextArea = new JScrollPane(route);
 	        	scrollableTextArea.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);  
 	        	scrollableTextArea.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);  
@@ -72,8 +72,8 @@ public class GUI extends JFrame implements ActionListener{
 			ITsp iTsp= TspFactory.getTspObj(filename,TspType.Asymmetric);
 			iTsp.findMinRoute();
 			panel.removeAll();
-			JLabel minDistance = new JLabel("Minimum Cost: ".concat(String.valueOf(iTsp.getSum())));
-			JTextArea route = new JTextArea("Path->".concat(Arrays.toString(iTsp.getRoute())), 1, 10);
+			JLabel minDistance = new JLabel("Minimum Cost: ".concat(String.valueOf(((AsymmetricTsp)iTsp).getSum())));
+			JTextArea route = new JTextArea("Path->".concat(Arrays.toString(((AsymmetricTsp)iTsp).getRoute())), 1, 10);
 			JScrollPane scrollableTextArea = new JScrollPane(route);
 			scrollableTextArea.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);  
 			scrollableTextArea.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);  

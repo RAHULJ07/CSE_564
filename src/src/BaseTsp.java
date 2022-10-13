@@ -11,12 +11,10 @@ public abstract class BaseTsp implements ITsp{
         distances = _dist;
     }
 
-    @Override
     public int getSum() {
     	return sum;
     }
-    
-    @Override
+
     public int[] getRoute() {
     	return route;
     }
