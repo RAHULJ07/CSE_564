@@ -3,4 +3,8 @@
  */
 public interface ITsp {
     void findMinRoute();
+
+	int getSum();
+
+	int[] getRoute();
 }
