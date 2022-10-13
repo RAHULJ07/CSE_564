@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * This class computes the minimum distance require to cover all the cities for TSP using greedy algorithm
  * @version 1.0.0.
@@ -8,6 +9,7 @@ public abstract class BaseTsp implements ITsp{
     private int[][] distances;
     private int sum;
     private int[] route;
+
     /**
      * Constructor for assigning the distance.
      * @param _dist 2-D array containing distances between cities.
@@ -22,6 +24,7 @@ public abstract class BaseTsp implements ITsp{
     public int getSum() {
     	return sum;
     }
+
     /**
      * Getter for the route
      * @return route array
@@ -29,6 +32,7 @@ public abstract class BaseTsp implements ITsp{
     public int[] getRoute() {
     	return route;
     }
+
     /**
      * Method to find the minimum total distance required to cover cities and the route.
      * Starting from the 0th indexed city, city with minimum

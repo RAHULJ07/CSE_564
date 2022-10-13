@@ -3,6 +3,7 @@ import java.awt.image.*;
 import java.awt.geom.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+
 /**
  * Plotter class to plot all the city points in a JPanel for Symmetric type.
  * @version 1.0.0.
@@ -13,6 +14,7 @@ public class PointPlotter {
     BufferedImage image = new BufferedImage(SIZE, SIZE, BufferedImage.TYPE_INT_RGB);
 
     private JComponent ui = null;
+
     /**
      * Constructor for fetching the ITsp object for further use
      * @param iTsp ITsp object
@@ -58,6 +60,7 @@ public class PointPlotter {
         g.draw(area);
         g.dispose();
     }
+
     /**
      * Method to initialize the GUI components
      */
@@ -70,6 +73,7 @@ public class PointPlotter {
         ui.setBorder(new EmptyBorder(4, 4, 4, 4));
         ui.add(new JLabel(new ImageIcon(image)));
     }
+
     /**
      * Method to fetch the JComponent
      * @return JComponent ui

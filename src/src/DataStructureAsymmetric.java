@@ -8,6 +8,7 @@ public class DataStructureAsymmetric implements IData{
 
     private int dimension;
     private Scanner scanner;
+
     /**
      * Constructor for assigning the dimension and scanner for creating the matrix.
      * @param dimension of the city
@@ -17,6 +18,7 @@ public class DataStructureAsymmetric implements IData{
         this.dimension = dimension;
         this.scanner = scanner;
     }
+
     /**
      * Method for creating the adjacency matrix from file data
      * @return ITsp object to further implement the algorithm for Asymmetric TSP.

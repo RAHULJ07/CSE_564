@@ -5,6 +5,7 @@
  */
 public class SymmetricTsp extends BaseTsp{
     private Coordinate [] coordinates;
+
     /**
      * Getter for the coordinate array
      * @return coordinate array
@@ -12,6 +13,7 @@ public class SymmetricTsp extends BaseTsp{
     public Coordinate[] getCoordinates() {
         return coordinates;
     }
+
     /**
      * Constructor for assigning the distance.
      * @param _dist 2-D array containing distances between cities.
