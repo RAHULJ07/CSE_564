@@ -6,6 +6,7 @@ import java.util.List;
  * @version 1.0.0.
  */
 public abstract class BaseTsp implements ITsp{
+
     private int[][] distances;
     private int sum;
     private int[] route;
@@ -17,6 +18,7 @@ public abstract class BaseTsp implements ITsp{
     public BaseTsp(int[][] _dist){
         distances = _dist;
     }
+
     /**
      * Getter for the distance sum
      * @return distance sum

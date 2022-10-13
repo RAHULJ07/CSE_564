@@ -4,6 +4,7 @@
  * @version 1.0.0.
  */
 public class SymmetricTsp extends BaseTsp{
+
     private Coordinate [] coordinates;
 
     /**
