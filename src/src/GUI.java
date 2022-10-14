@@ -72,7 +72,7 @@ public class GUI extends JFrame {
 				iTsp.findMinRoute();
 				
 				PointPlotter pointplotter = new PointPlotter(iTsp);
-				updateGUI(iTsp.getSum(), iTsp.getRoute(), pointplotter);
+				updateGUI(((SymmetricTsp)iTsp).getSum(), ((SymmetricTsp)iTsp).getRoute(), pointplotter);
 				
 			}
 			else if(e.getSource()==fileTypeAtsp) {
@@ -80,7 +80,7 @@ public class GUI extends JFrame {
 				ITsp iTsp= TspFactory.getTspObj(filename,TspType.Asymmetric);
 				iTsp.findMinRoute();
 				
-				updateGUI(iTsp.getSum(), iTsp.getRoute());
+				updateGUI(((AsymmetricTsp)iTsp).getSum(), ((AsymmetricTsp)iTsp).getRoute());
 				
 			}
 			
