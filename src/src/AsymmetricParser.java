@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 /**
  * The Asymmetric parser class extends BaseParser class and implements the parse method.
+ * @version 1.0.0.
  */
 public class AsymmetricParser extends BaseParser{
 

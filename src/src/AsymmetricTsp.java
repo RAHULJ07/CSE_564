@@ -1,5 +1,6 @@
 /**
  * This class extends BaseTsp class and sets the distance array.
+ * @version 1.0.0.
  */
 public class AsymmetricTsp extends BaseTsp{
 
