@@ -1,5 +1,6 @@
 /**
- * Factory class to create the TSP object
+ * Factory class to create the TSP object.
+ * @version 1.0.0.
  */
 public class TspFactory {
     /**

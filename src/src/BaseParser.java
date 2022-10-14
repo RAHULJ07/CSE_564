@@ -5,6 +5,7 @@ import java.util.Scanner;
 /**
  * This class implements IParser and is used to remove code redundancy.
  * The class has same methods that is used by its subclasses.
+ * @version 1.0.0.
  */
 public abstract class BaseParser implements IParser {
 

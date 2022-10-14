@@ -23,7 +23,7 @@ public class GUI extends JFrame {
 		setLayout(new FlowLayout());
 
 		JLabel label = new JLabel("First choose file, followed by file type: ");
-		eventHandler handler = new eventHandler();
+		EventHandler handler = new EventHandler();
 		
 		button = new JButton("Select File...");
 		button.addActionListener(handler);
@@ -49,30 +49,32 @@ public class GUI extends JFrame {
 	/**
      * Class for listening to and handling events using ActionListener interface.
      */
-	private class eventHandler implements ActionListener{
+	private class EventHandler implements ActionListener{
 		
 		/**
 	     * Method for handling actions.
 	     */
 		public void actionPerformed(ActionEvent e) {
 			
-			if(e.getSource()==button) {
+			if(e.getSource()==button)
+			{
 				
 				JFileChooser fileChooser = new JFileChooser();
 				int response = fileChooser.showOpenDialog(null);
 				if(response == JFileChooser.APPROVE_OPTION) {
 					filename = fileChooser.getSelectedFile().getAbsolutePath();
-					}
+				}
 				System.out.println(filename);
 				
-				}
+			}
+
 			if(e.getSource()==fileTypeTsp) {
 				
 				ITsp iTsp= TspFactory.getTspObj(filename,TspType.Symmetric);
 				iTsp.findMinRoute();
 				
 				PointPlotter pointplotter = new PointPlotter(iTsp);
-				updateGUI(iTsp.getSum(), iTsp.getRoute(), pointplotter);
+				updateGUI(((SymmetricTsp)iTsp).getSum(), ((SymmetricTsp)iTsp).getRoute(), pointplotter);
 				
 			}
 			else if(e.getSource()==fileTypeAtsp) {
@@ -80,12 +82,9 @@ public class GUI extends JFrame {
 				ITsp iTsp= TspFactory.getTspObj(filename,TspType.Asymmetric);
 				iTsp.findMinRoute();
 				
-				updateGUI(iTsp.getSum(), iTsp.getRoute());
-				
+				updateGUI(((AsymmetricTsp)iTsp).getSum(), ((AsymmetricTsp)iTsp).getRoute());
 			}
-			
 		}
-		
 	}
 	
 	/**
@@ -101,15 +100,14 @@ public class GUI extends JFrame {
 		
 		JTextArea route = new JTextArea("Path->".concat(Arrays.toString(path)), 1, 10);
 		JScrollPane scrollableTextArea = new JScrollPane(route);
-    		scrollableTextArea.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);  
-    		scrollableTextArea.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-    	
-    		panel.add(p.getUI());
+		scrollableTextArea.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		scrollableTextArea.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+
+		panel.add(p.getUI());
 		panel.add(minDistance);
 		panel.add(scrollableTextArea);
 		panel.setSize(getSize());
 		panel.revalidate();
-		
 	}
 	
 	/**
@@ -131,7 +129,5 @@ public class GUI extends JFrame {
 		panel.add(scrollableTextArea);
 		panel.setSize(getSize());
 		panel.revalidate();
-		
 	}
-	
 }
