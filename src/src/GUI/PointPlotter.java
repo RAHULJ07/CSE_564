@@ -1,3 +1,8 @@
+package GUI;
+
+import Algorithm.ITsp;
+import Algorithm.SymmetricTsp;
+import DataStructure.Coordinate;
 import java.awt.*;
 import java.awt.image.*;
 import java.awt.geom.*;

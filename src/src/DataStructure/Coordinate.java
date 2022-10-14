@@ -1,8 +1,10 @@
+package DataStructure;
+
 /**
  * A coordinate class for storing x and y coordinate of symmetric TSP data.
  * @version 1.0.0.
  */
-class Coordinate {
+public class Coordinate {
     private double x;
     private double y;
 

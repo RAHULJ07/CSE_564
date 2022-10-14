@@ -1,10 +1,14 @@
+package DataStructure;
+
+import Algorithm.AsymmetricTsp;
+import Algorithm.ITsp;
 import java.util.Scanner;
 
 /**
  * Data structure class for Asymmetric type TSP that creates the adjacency matrix after parsing.
  * @version 1.0.0.
  */
-public class DataStructureAsymmetric implements IData{
+public class DataStructureAsymmetric implements IData {
 
     private int dimension;
     private Scanner scanner;

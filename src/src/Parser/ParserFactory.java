@@ -1,3 +1,7 @@
+package Parser;
+
+import Algorithm.TspType;
+
 /**
  * Factory class to create the parser object.
  * @version 1.0.0.

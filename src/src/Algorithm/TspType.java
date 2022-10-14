@@ -1,3 +1,5 @@
+package Algorithm;
+
 /**
  * Enum for types of TSP object.
  * @version 1.0.0.

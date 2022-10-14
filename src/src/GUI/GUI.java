@@ -1,3 +1,6 @@
+package GUI;
+
+import Algorithm.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -70,7 +73,7 @@ public class GUI extends JFrame {
 
 			if(e.getSource()==fileTypeTsp) {
 				
-				ITsp iTsp= TspFactory.getTspObj(filename,TspType.Symmetric);
+				ITsp iTsp= TspFactory.getTspObj(filename, TspType.Symmetric);
 				iTsp.findMinRoute();
 				
 				PointPlotter pointplotter = new PointPlotter(iTsp);
@@ -79,7 +82,7 @@ public class GUI extends JFrame {
 			}
 			else if(e.getSource()==fileTypeAtsp) {
 				
-				ITsp iTsp= TspFactory.getTspObj(filename,TspType.Asymmetric);
+				ITsp iTsp= TspFactory.getTspObj(filename, TspType.Asymmetric);
 				iTsp.findMinRoute();
 				
 				updateGUI(((AsymmetricTsp)iTsp).getSum(), ((AsymmetricTsp)iTsp).getRoute());

@@ -1,3 +1,7 @@
+package DataStructure;
+
+import Algorithm.ITsp;
+
 /**
  * Interface for creating the data stricture to hold distance matrix.
  * @version 1.0.0.

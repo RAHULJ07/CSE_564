@@ -1,3 +1,7 @@
+package Algorithm;
+
+import DataStructure.Coordinate;
+
 /**
  * This class extends BaseTsp class and sets the distance array.
  * It also gets the coordinate array from the Data Stricture symmetric class.
@@ -5,7 +9,7 @@
  */
 public class SymmetricTsp extends BaseTsp{
 
-    private Coordinate [] coordinates;
+    private Coordinate[] coordinates;
 
     /**
      * Getter for the coordinate array

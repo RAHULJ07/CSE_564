@@ -1,3 +1,5 @@
+package Algorithm;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,5 +77,12 @@ public abstract class BaseTsp implements ITsp{
         row = route[counter - 1] - 1;
         sum += distances[row][0];
         route[counter]= 1;
+
+        System.out.print("Minimum Cost is : ");
+        System.out.println(sum);
+        System.out.println("Path ->");
+        for(int k=0;k<route.length;k++)
+            System.out.print(route[k] + " ");
+
     }
 }
