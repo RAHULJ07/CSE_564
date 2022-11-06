@@ -1,3 +1,5 @@
+package PlottingAssignment;
+
 import java.awt.*;
 
 public class Bar extends Decorator{

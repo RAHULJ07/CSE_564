@@ -1,3 +1,5 @@
+package PlottingAssignment;
+
 import javax.swing.*;
 import java.awt.*;
 
