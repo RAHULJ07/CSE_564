@@ -1,25 +1,44 @@
 package PlottingAssignment;
 
 import java.awt.*;
+import java.util.Queue;
 
+/**
+ * Line class to create the bar plot from the queue generated.
+ * @version 1.0.0.
+ */
 public class Line implements Top {
-    private int[] yCoords;
-    private int prevX,prevY,unitX,unitY;
+    private Queue<Integer> queue ;
+    private double prevX,prevY,unitX,unitY;
 
-    public Line(int[] yCoords) {
-        this.yCoords = yCoords;
+    /**
+     * Constructor for assigning the distance.
+     * @param queue containing the points to be plotted.
+     */
+    public Line(Queue<Integer> queue) {
+        this.queue = queue;
     }
 
+    /**
+     * Draw method to add the plots to the Graphics2D object
+     * @param g2d Graphics2D instance
+     * @param chartWidth Width of the chart to be plotted
+     * @param chartHeight Height of the chart to be plotted
+     * @param chartX starting X coordinate of the chart
+     * @param chartY starting Y coordinate of the chart
+     */
     @Override
-    public void draw(Graphics2D g2d, int chartWidth, int chartHeight, int chartX, int chartY, int AXIS_OFFSET) {
-        prevX = chartX;
-        prevY = chartY;
-        unitX =  (chartWidth)/10;
-        unitY =  (chartHeight)/10;
+    public void draw(Graphics2D g2d, int chartWidth, int chartHeight, int chartX, int chartY) {
+        double x = (double) (chartWidth)/(queue.size());
+        double max = 100;
 
-        for (int value : yCoords) {
-            g2d.setColor(Color.RED);
-            g2d.drawLine(prevX, prevY, prevX += unitX, prevY = chartY - (value * unitY));
+        prevX = chartX;
+        unitY = (chartHeight)/max;
+        prevY = chartY- (queue.poll() * unitY);
+
+        for (int element : queue){
+            g2d.setColor(Color.BLUE);
+            g2d.drawLine((int) prevX, (int) prevY, (int) (prevX += x), (int) (prevY = chartY - (element * unitY)));
         }
     }
 }
