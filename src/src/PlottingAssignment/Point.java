@@ -2,32 +2,48 @@ package PlottingAssignment;
 
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
+import java.util.Queue;
 
+/**
+ * Point class to create the bar plot from the queue generated.
+ * @version 1.0.0.
+ */
 public class Point extends Decorator{
 
-    int[] yCoords;
+    private Queue<Integer> queue ;
 
-    public Point(int[] yCoords) {
-        this.yCoords = yCoords;
+    /**
+     * Constructor for assigning the distance.
+     * @param queue containing the points to be plotted.
+     */
+    public Point(Queue<Integer> queue) {
+        this.queue = queue;
     }
+
+    /**
+     * Draw method to add the plots to the Graphics2D object
+     * @param g2d Graphics2D instance
+     * @param chartWidth Width of the chart to be plotted
+     * @param chartHeight Height of the chart to be plotted
+     * @param chartX starting X coordinate of the chart
+     * @param chartY starting Y coordinate of the chart
+     */
     @Override
-    public void draw(Graphics2D g2d, int chartWidth, int chartHeight, int chartX, int chartY, int AXIS_OFFSET){
-        super.draw(g2d, chartWidth, chartHeight, chartX, chartY, AXIS_OFFSET);
-        double max = 0.;
+    public void draw(Graphics2D g2d, int chartWidth, int chartHeight, int chartX, int chartY){
+        super.draw(g2d, chartWidth, chartHeight, chartX, chartY);
+        double max = 100;
 
-        for (Integer wrapper : yCoords) {
-            if (max < wrapper)
-                max = wrapper;
-        }
 
-        double x = (double)(chartWidth)/(yCoords.length-1);
+        double x = (double)(chartWidth)/(queue.size());
         double unit = (double)(chartHeight)/max;
-        g2d.setPaint(Color.RED);
+        g2d.setPaint(Color.BLUE);
 
-        for(int i = 0; i< yCoords.length; i++){
-            double x1 = chartX +i*x;
-            double y1 = chartY-unit* yCoords[i];
-            g2d.fill(new Ellipse2D.Double(x1-2, y1-2, 4, 4));
+        int i=0;
+        for(int element : queue){
+            double x1 = chartX + x/4 +i*x - x/8;
+            double y1 = chartY-unit* element;
+            g2d.fill(new Ellipse2D.Float((float) (x1), (float) (y1), 8, 8));
+            i++;
         }
     }
 }

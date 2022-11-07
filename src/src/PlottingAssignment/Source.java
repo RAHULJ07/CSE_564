@@ -1,8 +1,7 @@
 package PlottingAssignment;
 
-import java.util.Observable;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.sql.SQLOutput;
+import java.util.*;
 
 public class Source extends Observable{
 
@@ -17,11 +16,11 @@ public class Source extends Observable{
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                randomNumber = (int) (Math.random() * 200) + 1;
+                randomNumber = (int) (Math.random() * 100) + 1;
                 setChanged();
                 notifyObservers();
             }
-        }, 10*1000, 10*1000);
+        }, 500, 500);
 
     }
 }
