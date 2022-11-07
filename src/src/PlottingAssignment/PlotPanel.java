@@ -36,24 +36,21 @@ public class PlotPanel extends JPanel implements Observer {
         super.paintComponent(g);
         computeSize();
         Graphics2D g2 = (Graphics2D) g;
+        Bar bar = new Bar(queue);
+        Line line = new Line(queue);
+        Point point = new Point(queue);
         if(plotNumber ==1) {
-            Bar bar = new Bar(queue);
-            Line line = new Line(queue);
-            Point point = new Point(queue);
             point.add(bar);
             bar.add(line);
             point.draw(g2, chartWidth, chartHeight, chartX, chartY);
         }
         else if(plotNumber ==2){
-            Line line1 = new Line(queue);
-            Point point1 = new Point(queue);
-            point1.add(line1);
-            point1.draw(g2, chartWidth, chartHeight, chartX, chartY);
+            point.add(line);
+            point.draw(g2, chartWidth, chartHeight, chartX, chartY);
 
         }
         else if(plotNumber == 3){
-            Line line2 = new Line(queue);
-            line2.draw(g2, chartWidth, chartHeight, chartX, chartY);
+            line.draw(g2, chartWidth, chartHeight, chartX, chartY);
         }
     }
 
