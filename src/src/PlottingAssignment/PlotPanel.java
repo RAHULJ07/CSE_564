@@ -39,18 +39,22 @@ public class PlotPanel extends JPanel implements Observer {
         Bar bar = new Bar(queue);
         Line line = new Line(queue);
         Point point = new Point(queue);
+        AverageLine avgLine = new AverageLine(queue);
         if(plotNumber ==1) {
             point.add(bar);
-            bar.add(line);
+            bar.add(avgLine);
+            avgLine.add(line);
             point.draw(g2, chartWidth, chartHeight, chartX, chartY);
         }
         else if(plotNumber ==2){
-            point.add(line);
+            point.add(avgLine);
+            avgLine.add(line);
             point.draw(g2, chartWidth, chartHeight, chartX, chartY);
 
         }
         else if(plotNumber == 3){
-            line.draw(g2, chartWidth, chartHeight, chartX, chartY);
+            avgLine.add(line);
+            avgLine.draw(g2, chartWidth, chartHeight, chartX, chartY);
         }
     }
 
