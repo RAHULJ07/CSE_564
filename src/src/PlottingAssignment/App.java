@@ -45,8 +45,9 @@ public class App implements ActionListener {
         PlotPanel plotPanel1 = new PlotPanel(1);
         PlotPanel plotPanel2 = new PlotPanel(2);
         PlotPanel plotPanel3 = new PlotPanel(3);
-        if(e.getSource()==button){
-            Source source =new Source();
+
+        if(e.getSource() == button){
+            Source source = new Source();
             source.addObserver(plotPanel1);
             source.addObserver(plotPanel2);
             source.addObserver(plotPanel3);
@@ -57,6 +58,7 @@ public class App implements ActionListener {
                 throw new RuntimeException(ex);
             }
         }
+
         frame.add(plotPanel1);
         frame.add(plotPanel2);
         frame.add(plotPanel3);

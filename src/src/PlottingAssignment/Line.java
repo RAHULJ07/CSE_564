@@ -7,7 +7,7 @@ import java.util.Queue;
  * Line class to create the bar plot from the queue generated.
  * @version 1.0.0.
  */
-public class Line implements Top {
+public class Line implements ITop {
     private Queue<Integer> queue ;
     private double prevX,prevY,unitX,unitY;
 
