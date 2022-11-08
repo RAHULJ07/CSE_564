@@ -36,10 +36,10 @@ public class PlotPanel extends JPanel implements Observer {
         super.paintComponent(g);
         computeSize();
         Graphics2D g2 = (Graphics2D) g;
-        Bar bar = new Bar(queue);
-        Line line = new Line(queue);
-        Point point = new Point(queue);
-        AverageLine avgLine = new AverageLine(queue);
+        Decorator bar = new Bar(queue);
+        ITop line = new Line(queue);
+        Decorator point = new Point(queue);
+        Decorator avgLine = new AverageLine(queue);
         if(plotNumber ==1) {
             point.add(bar);
             bar.add(avgLine);

@@ -1,20 +1,23 @@
 package PlottingAssignment;
 
 import java.awt.*;
+import java.util.Queue;
 
 /**
  * Decorator class to add up decorations to initial Line plot
  * @version 1.0.0.
  */
-public class Decorator implements Top{
-    protected Top top ;
+public abstract class Decorator implements ITop {
+    protected ITop ITop;
+
+    private Queue<Integer> queue ;
 
     /**
      * add method for adding up instance of decoration to current class
-     * @param top instance of the decoration
+     * @param ITop instance of the decoration
      */
-    public void add(Top top){
-        this.top = top;
+    public void add(ITop ITop){
+        this.ITop = ITop;
     }
 
     /**
@@ -27,6 +30,6 @@ public class Decorator implements Top{
      */
     @Override
     public void draw(Graphics2D g2d, int chartWidth, int chartHeight, int chartX, int chartY) {
-        top.draw(g2d, chartWidth, chartHeight, chartX, chartY);
+        ITop.draw(g2d, chartWidth, chartHeight, chartX, chartY);
     }
 }
